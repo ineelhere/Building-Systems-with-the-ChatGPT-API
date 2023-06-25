@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>L7_student</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>L8_student</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -15213,19 +15213,19 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div id="cell-id=5cd0b4f7" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=78401ba9" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Build-an-End-to-End-System">Build an End-to-End System<a class="anchor-link" href="#Build-an-End-to-End-System">&#182;</a></h1><p>This puts together the chain of prompts that you saw throughout the course.</p>
+<h1 id="Evaluation-part-I">Evaluation part I<a class="anchor-link" href="#Evaluation-part-I">&#182;</a></h1><p>Evaluate LLM responses when there is a single &quot;right answer&quot;.</p>
 
 </div>
 </div>
 </div>
 </div>
-<div id="cell-id=8330d5c1" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=aa249c91" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15236,7 +15236,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><div id="cell-id=9c83371b" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div id="cell-id=1f841c89" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15249,10 +15249,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">utils</span>
-
-<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>  <span class="c1"># GUI</span>
-<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
-
 <span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span><span class="p">,</span> <span class="n">find_dotenv</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">load_dotenv</span><span class="p">(</span><span class="n">find_dotenv</span><span class="p">())</span> <span class="c1"># read local .env file</span>
 
@@ -15264,473 +15260,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-
-<div id="b7fea00d-eac7-41ed-8edd-14b28736465e" class="jp-RenderedJavaScript jp-OutputArea-output " data-mime-type="application/javascript">
-<script type="text/javascript">
-var element = document.getElementById('b7fea00d-eac7-41ed-8edd-14b28736465e');
-(function(root) {
-  function now() {
-    return new Date();
-  }
-
-  var force = true;
-
-  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
-    root._bokeh_onload_callbacks = [];
-    root._bokeh_is_loading = undefined;
-  }
-
-  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
-    root._bokeh_timeout = Date.now() + 5000;
-    root._bokeh_failed_load = false;
-  }
-
-  function run_callbacks() {
-    try {
-      root._bokeh_onload_callbacks.forEach(function(callback) {
-        if (callback != null)
-          callback();
-      });
-    } finally {
-      delete root._bokeh_onload_callbacks
-    }
-    console.debug("Bokeh: all callbacks have finished");
-  }
-
-  function load_libs(css_urls, js_urls, js_modules, callback) {
-    if (css_urls == null) css_urls = [];
-    if (js_urls == null) js_urls = [];
-    if (js_modules == null) js_modules = [];
-
-    root._bokeh_onload_callbacks.push(callback);
-    if (root._bokeh_is_loading > 0) {
-      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-      return null;
-    }
-    if (js_urls.length === 0 && js_modules.length === 0) {
-      run_callbacks();
-      return null;
-    }
-    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-
-    function on_load() {
-      root._bokeh_is_loading--;
-      if (root._bokeh_is_loading === 0) {
-        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
-        run_callbacks()
-      }
-    }
-
-    function on_error() {
-      console.error("failed to load " + url);
-    }
-
-    for (var i = 0; i < css_urls.length; i++) {
-      var url = css_urls[i];
-      const element = document.createElement("link");
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.rel = "stylesheet";
-      element.type = "text/css";
-      element.href = url;
-      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
-      document.body.appendChild(element);
-    }
-
-    var skip = [];
-    if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@4.2.5/dist/gridstack-h5', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'gridstack': {'exports': 'GridStack'}}});
-      require(["gridstack"], function(GridStack) {
-	window.GridStack = GridStack
-	on_load()
-      })
-      require(["notyf"], function() {
-	on_load()
-      })
-      root._bokeh_is_loading = css_urls.length + 2;
-    } else {
-      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length;
-    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/0.14.4/dist/bundled/gridstack/gridstack@4.2.5/dist/gridstack-h5.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/0.14.4/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    for (var i = 0; i < js_urls.length; i++) {
-      var url = js_urls[i];
-      if (skip.indexOf(url) >= 0) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
-      }
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (var i = 0; i < js_modules.length; i++) {
-      var url = js_modules[i];
-      if (skip.indexOf(url) >= 0) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
-      }
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    if (!js_urls.length && !js_modules.length) {
-      on_load()
-    }
-  };
-
-  function inject_raw_css(css) {
-    const element = document.createElement("style");
-    element.appendChild(document.createTextNode(css));
-    document.body.appendChild(element);
-  }
-
-  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-2.4.3.min.js", "https://unpkg.com/@holoviz/panel@0.14.4/dist/panel.min.js"];
-  var js_modules = [];
-  var css_urls = ["https://cdn.holoviz.org/panel/0.14.4/dist/css/alerts.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/card.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/dataframe.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/debugger.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/json.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/loading.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/markdown.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/widgets.css"];
-  var inline_js = [    function(Bokeh) {
-      inject_raw_css("\n    .bk.pn-loading.arc:before {\n      background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n      background-size: auto calc(min(50%, 400px));\n    }\n    ");
-    },    function(Bokeh) {
-      Bokeh.set_log_level("info");
-    },
-function(Bokeh) {} // ensure no trailing comma for IE
-  ];
-
-  function run_inline_js() {
-    if ((root.Bokeh !== undefined) || (force === true)) {
-      for (var i = 0; i < inline_js.length; i++) {
-        inline_js[i].call(root, root.Bokeh);
-      }} else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(run_inline_js, 100);
-    } else if (!root._bokeh_failed_load) {
-      console.log("Bokeh: BokehJS failed to load within specified timeout.");
-      root._bokeh_failed_load = true;
-    }
-  }
-
-  if (root._bokeh_is_loading === 0) {
-    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
-    run_inline_js();
-  } else {
-    load_libs(css_urls, js_urls, js_modules, function() {
-      console.debug("Bokeh: BokehJS plotting callback run at", now());
-      run_inline_js();
-    });
-  }
-}(window));
-</script>
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-
-<div id="c95ca428-75be-4ea9-ac47-d460c9c528ef" class="jp-RenderedJavaScript jp-OutputArea-output " data-mime-type="application/javascript">
-<script type="text/javascript">
-var element = document.getElementById('c95ca428-75be-4ea9-ac47-d460c9c528ef');
-
-if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
-  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
-}
-
-
-    function JupyterCommManager() {
-    }
-
-    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
-      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        comm_manager.register_target(comm_id, function(comm) {
-          comm.on_msg(msg_handler);
-        });
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
-          comm.onMsg = msg_handler;
-        });
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
-          var messages = comm.messages[Symbol.asyncIterator]();
-          function processIteratorResult(result) {
-            var message = result.value;
-            console.log(message)
-            var content = {data: message.data, comm_id};
-            var buffers = []
-            for (var buffer of message.buffers || []) {
-              buffers.push(new DataView(buffer))
-            }
-            var metadata = message.metadata || {};
-            var msg = {content, buffers, metadata}
-            msg_handler(msg);
-            return messages.next().then(processIteratorResult);
-          }
-          return messages.next().then(processIteratorResult);
-        })
-      }
-    }
-
-    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
-      if (comm_id in window.PyViz.comms) {
-        return window.PyViz.comms[comm_id];
-      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
-        if (msg_handler) {
-          comm.on_msg(msg_handler);
-        }
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
-        comm.open();
-        if (msg_handler) {
-          comm.onMsg = msg_handler;
-        }
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        var comm_promise = google.colab.kernel.comms.open(comm_id)
-        comm_promise.then((comm) => {
-          window.PyViz.comms[comm_id] = comm;
-          if (msg_handler) {
-            var messages = comm.messages[Symbol.asyncIterator]();
-            function processIteratorResult(result) {
-              var message = result.value;
-              var content = {data: message.data};
-              var metadata = message.metadata || {comm_id};
-              var msg = {content, metadata}
-              msg_handler(msg);
-              return messages.next().then(processIteratorResult);
-            }
-            return messages.next().then(processIteratorResult);
-          }
-        }) 
-        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
-          return comm_promise.then((comm) => {
-            comm.send(data, metadata, buffers, disposeOnDone);
-          });
-        };
-        var comm = {
-          send: sendClosure
-        };
-      }
-      window.PyViz.comms[comm_id] = comm;
-      return comm;
-    }
-    window.PyViz.comm_manager = new JupyterCommManager();
-    
-
-
-var JS_MIME_TYPE = 'application/javascript';
-var HTML_MIME_TYPE = 'text/html';
-var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
-var CLASS_NAME = 'output';
-
-/**
- * Render data to the DOM node
- */
-function render(props, node) {
-  var div = document.createElement("div");
-  var script = document.createElement("script");
-  node.appendChild(div);
-  node.appendChild(script);
-}
-
-/**
- * Handle when a new output is added
- */
-function handle_add_output(event, handle) {
-  var output_area = handle.output_area;
-  var output = handle.output;
-  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
-    return
-  }
-  var id = output.metadata[EXEC_MIME_TYPE]["id"];
-  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
-  if (id !== undefined) {
-    var nchildren = toinsert.length;
-    var html_node = toinsert[nchildren-1].children[0];
-    html_node.innerHTML = output.data[HTML_MIME_TYPE];
-    var scripts = [];
-    var nodelist = html_node.querySelectorAll("script");
-    for (var i in nodelist) {
-      if (nodelist.hasOwnProperty(i)) {
-        scripts.push(nodelist[i])
-      }
-    }
-
-    scripts.forEach( function (oldScript) {
-      var newScript = document.createElement("script");
-      var attrs = [];
-      var nodemap = oldScript.attributes;
-      for (var j in nodemap) {
-        if (nodemap.hasOwnProperty(j)) {
-          attrs.push(nodemap[j])
-        }
-      }
-      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
-      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-      oldScript.parentNode.replaceChild(newScript, oldScript);
-    });
-    if (JS_MIME_TYPE in output.data) {
-      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
-    }
-    output_area._hv_plot_id = id;
-    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
-      window.PyViz.plot_index[id] = Bokeh.index[id];
-    } else {
-      window.PyViz.plot_index[id] = null;
-    }
-  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
-    var bk_div = document.createElement("div");
-    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
-    var script_attrs = bk_div.children[0].attributes;
-    for (var i = 0; i < script_attrs.length; i++) {
-      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
-    }
-    // store reference to server id on output_area
-    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
-  }
-}
-
-/**
- * Handle when an output is cleared or removed
- */
-function handle_clear_output(event, handle) {
-  var id = handle.cell.output_area._hv_plot_id;
-  var server_id = handle.cell.output_area._bokeh_server_id;
-  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
-  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
-  if (server_id !== null) {
-    comm.send({event_type: 'server_delete', 'id': server_id});
-    return;
-  } else if (comm !== null) {
-    comm.send({event_type: 'delete', 'id': id});
-  }
-  delete PyViz.plot_index[id];
-  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
-    var doc = window.Bokeh.index[id].model.document
-    doc.clear();
-    const i = window.Bokeh.documents.indexOf(doc);
-    if (i > -1) {
-      window.Bokeh.documents.splice(i, 1);
-    }
-  }
-}
-
-/**
- * Handle kernel restart event
- */
-function handle_kernel_cleanup(event, handle) {
-  delete PyViz.comms["hv-extension-comm"];
-  window.PyViz.plot_index = {}
-}
-
-/**
- * Handle update_display_data messages
- */
-function handle_update_output(event, handle) {
-  handle_clear_output(event, {cell: {output_area: handle.output_area}})
-  handle_add_output(event, handle)
-}
-
-function register_renderer(events, OutputArea) {
-  function append_mime(data, metadata, element) {
-    // create a DOM node to render to
-    var toinsert = this.create_output_subarea(
-    metadata,
-    CLASS_NAME,
-    EXEC_MIME_TYPE
-    );
-    this.keyboard_manager.register_events(toinsert);
-    // Render to node
-    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
-    render(props, toinsert[0]);
-    element.append(toinsert);
-    return toinsert
-  }
-
-  events.on('output_added.OutputArea', handle_add_output);
-  events.on('output_updated.OutputArea', handle_update_output);
-  events.on('clear_output.CodeCell', handle_clear_output);
-  events.on('delete.Cell', handle_clear_output);
-  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
-
-  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
-    safe: true,
-    index: 0
-  });
-}
-
-if (window.Jupyter !== undefined) {
-  try {
-    var events = require('base/js/events');
-    var OutputArea = require('notebook/js/outputarea').OutputArea;
-    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
-      register_renderer(events, OutputArea);
-    }
-  } catch(err) {
-  }
-}
-
-</script>
-</div>
-
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<style>.bk-root, .bk-root .bk:before, .bk-root .bk:after {
-  font-family: var(--jp-ui-font-size1);
-  font-size: var(--jp-ui-font-size1);
-  color: var(--jp-ui-font-color1);
-}
-</style>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div id="cell-id=af6d1ae2" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div id="cell-id=17ffe6c7" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15754,17 +15284,18 @@ if (window.Jupyter !== undefined) {
 </div>
 
 </div>
-<div id="cell-id=43b91ea6" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=e319ed36" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="System-of-chained-prompts-for-processing-the-user-query">System of chained prompts for processing the user query<a class="anchor-link" href="#System-of-chained-prompts-for-processing-the-user-query">&#182;</a></h2>
+<h4 id="Get-the-relevant-products-and-categories">Get the relevant products and categories<a class="anchor-link" href="#Get-the-relevant-products-and-categories">&#182;</a></h4><p>Here is the list of products and categories that are in the product catalog.</p>
+
 </div>
 </div>
 </div>
-</div><div id="cell-id=2258c383" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div id="cell-id=27bb80d0" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15772,83 +15303,161 @@ if (window.Jupyter !== undefined) {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">process_user_message</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">all_messages</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">delimiter</span> <span class="o">=</span> <span class="s2">&quot;```&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">products_and_category</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_products_and_category</span><span class="p">()</span>
+<span class="n">products_and_category</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
-    <span class="c1"># Step 1: Check input to see if it flags the Moderation API or is a prompt injection</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Moderation</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">user_input</span><span class="p">)</span>
-    <span class="n">moderation_output</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
-    <span class="k">if</span> <span class="n">moderation_output</span><span class="p">[</span><span class="s2">&quot;flagged&quot;</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 1: Input flagged by Moderation API.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;Sorry, we cannot process this request.&quot;</span>
 
-    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 1: Input passed moderation check.&quot;</span><span class="p">)</span>
-    
-    <span class="n">category_and_product_response</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">find_category_and_product_only</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_products_and_category</span><span class="p">())</span>
-    <span class="c1">#print(print(category_and_product_response)</span>
-    <span class="c1"># Step 2: Extract the list of products</span>
-    <span class="n">category_and_product_list</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">read_string_to_list</span><span class="p">(</span><span class="n">category_and_product_response</span><span class="p">)</span>
-    <span class="c1">#print(category_and_product_list)</span>
 
-    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 2: Extracted list of products.&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Step 3: If products are found, look them up</span>
-    <span class="n">product_information</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">generate_output_string</span><span class="p">(</span><span class="n">category_and_product_list</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 3: Looked up product information.&quot;</span><span class="p">)</span>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;Computers and Laptops&#39;: [&#39;TechPro Ultrabook&#39;,
+  &#39;BlueWave Gaming Laptop&#39;,
+  &#39;PowerLite Convertible&#39;,
+  &#39;TechPro Desktop&#39;,
+  &#39;BlueWave Chromebook&#39;],
+ &#39;Smartphones and Accessories&#39;: [&#39;SmartX ProPhone&#39;,
+  &#39;MobiTech PowerCase&#39;,
+  &#39;SmartX MiniPhone&#39;,
+  &#39;MobiTech Wireless Charger&#39;,
+  &#39;SmartX EarBuds&#39;],
+ &#39;Televisions and Home Theater Systems&#39;: [&#39;CineView 4K TV&#39;,
+  &#39;SoundMax Home Theater&#39;,
+  &#39;CineView 8K TV&#39;,
+  &#39;SoundMax Soundbar&#39;,
+  &#39;CineView OLED TV&#39;],
+ &#39;Gaming Consoles and Accessories&#39;: [&#39;GameSphere X&#39;,
+  &#39;ProGamer Controller&#39;,
+  &#39;GameSphere Y&#39;,
+  &#39;ProGamer Racing Wheel&#39;,
+  &#39;GameSphere VR Headset&#39;],
+ &#39;Audio Equipment&#39;: [&#39;AudioPhonic Noise-Canceling Headphones&#39;,
+  &#39;WaveSound Bluetooth Speaker&#39;,
+  &#39;AudioPhonic True Wireless Earbuds&#39;,
+  &#39;WaveSound Soundbar&#39;,
+  &#39;AudioPhonic Turntable&#39;],
+ &#39;Cameras and Camcorders&#39;: [&#39;FotoSnap DSLR Camera&#39;,
+  &#39;ActionCam 4K&#39;,
+  &#39;FotoSnap Mirrorless Camera&#39;,
+  &#39;ZoomMaster Camcorder&#39;,
+  &#39;FotoSnap Instant Camera&#39;]}</pre>
+</div>
 
-    <span class="c1"># Step 4: Answer the user question</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div id="cell-id=2a6ca898" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Find-relevant-product-and-category-names-(version-1)">Find relevant product and category names (version 1)<a class="anchor-link" href="#Find-relevant-product-and-category-names-(version-1)">&#182;</a></h3><p>This could be the version that is running in production.</p>
+
+</div>
+</div>
+</div>
+</div><div id="cell-id=b263cf15" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">find_category_and_product_v1</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span><span class="n">products_and_category</span><span class="p">):</span>
+
+    <span class="n">delimiter</span> <span class="o">=</span> <span class="s2">&quot;####&quot;</span>
     <span class="n">system_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    You are a customer service assistant for a large electronic store. </span><span class="se">\</span>
-<span class="s2">    Respond in a friendly and helpful tone, with concise answers. </span><span class="se">\</span>
-<span class="s2">    Make sure to ask the user relevant follow-up questions.</span>
+<span class="s2">    You will be provided with customer service queries. </span><span class="se">\</span>
+<span class="s2">    The customer service query will be delimited with </span><span class="si">{</span><span class="n">delimiter</span><span class="si">}</span><span class="s2"> characters.</span>
+<span class="s2">    Output a python list of json objects, where each object has the following format:</span>
+<span class="s2">        &#39;category&#39;: &lt;one of Computers and Laptops, Smartphones and Accessories, Televisions and Home Theater Systems, </span><span class="se">\</span>
+<span class="s2">    Gaming Consoles and Accessories, Audio Equipment, Cameras and Camcorders&gt;,</span>
+<span class="s2">    AND</span>
+<span class="s2">        &#39;products&#39;: &lt;a list of products that must be found in the allowed products below&gt;</span>
+
+
+<span class="s2">    Where the categories and products must be found in the customer service query.</span>
+<span class="s2">    If a product is mentioned, it must be associated with the correct category in the allowed products list below.</span>
+<span class="s2">    If no products or categories are found, output an empty list.</span>
+<span class="s2">    </span>
+
+<span class="s2">    List out all products that are relevant to the customer service query based on how closely it relates</span>
+<span class="s2">    to the product name and product category.</span>
+<span class="s2">    Do not assume, from the name of the product, any features or attributes such as relative quality or price.</span>
+
+<span class="s2">    The allowed products are provided in JSON format.</span>
+<span class="s2">    The keys of each item represent the category.</span>
+<span class="s2">    The values of each item is a list of products that are within that category.</span>
+<span class="s2">    Allowed products: </span><span class="si">{</span><span class="n">products_and_category</span><span class="si">}</span>
+<span class="s2">    </span>
+
 <span class="s2">    &quot;&quot;&quot;</span>
-    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">system_message</span><span class="p">},</span>
-        <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">delimiter</span><span class="si">}{</span><span class="n">user_input</span><span class="si">}{</span><span class="n">delimiter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;assistant&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Relevant product information:</span><span class="se">\n</span><span class="si">{</span><span class="n">product_information</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
-    <span class="p">]</span>
-
-    <span class="n">final_response</span> <span class="o">=</span> <span class="n">get_completion_from_messages</span><span class="p">(</span><span class="n">all_messages</span> <span class="o">+</span> <span class="n">messages</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 4: Generated response to user question.&quot;</span><span class="p">)</span>
-    <span class="n">all_messages</span> <span class="o">=</span> <span class="n">all_messages</span> <span class="o">+</span> <span class="n">messages</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-
-    <span class="c1"># Step 5: Put the answer through the Moderation API</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Moderation</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">final_response</span><span class="p">)</span>
-    <span class="n">moderation_output</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">if</span> <span class="n">moderation_output</span><span class="p">[</span><span class="s2">&quot;flagged&quot;</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 5: Response flagged by Moderation API.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;Sorry, we cannot provide this information.&quot;</span>
-
-    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 5: Response passed moderation check.&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Step 6: Ask the model if the response answers the initial user query well</span>
-    <span class="n">user_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    Customer message: </span><span class="si">{</span><span class="n">delimiter</span><span class="si">}{</span><span class="n">user_input</span><span class="si">}{</span><span class="n">delimiter</span><span class="si">}</span>
-<span class="s2">    Agent response: </span><span class="si">{</span><span class="n">delimiter</span><span class="si">}{</span><span class="n">final_response</span><span class="si">}{</span><span class="n">delimiter</span><span class="si">}</span>
-
-<span class="s2">    Does the response sufficiently answer the question?</span>
+    
+    <span class="n">few_shot_user_1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;I want the most expensive computer.&quot;&quot;&quot;</span>
+    <span class="n">few_shot_assistant_1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; </span>
+<span class="s2">    [{&#39;category&#39;: &#39;Computers and Laptops&#39;, </span><span class="se">\</span>
+<span class="s2">&#39;products&#39;: [&#39;TechPro Ultrabook&#39;, &#39;BlueWave Gaming Laptop&#39;, &#39;PowerLite Convertible&#39;, &#39;TechPro Desktop&#39;, &#39;BlueWave Chromebook&#39;]}]</span>
 <span class="s2">    &quot;&quot;&quot;</span>
-    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">system_message</span><span class="p">},</span>
-        <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">user_message</span><span class="p">}</span>
-    <span class="p">]</span>
-    <span class="n">evaluation_response</span> <span class="o">=</span> <span class="n">get_completion_from_messages</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 6: Model evaluated the response.&quot;</span><span class="p">)</span>
+    
+    <span class="n">messages</span> <span class="o">=</span>  <span class="p">[</span>  
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">system_message</span><span class="p">},</span>    
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">delimiter</span><span class="si">}{</span><span class="n">few_shot_user_1</span><span class="si">}{</span><span class="n">delimiter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>  
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;assistant&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">few_shot_assistant_1</span> <span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">delimiter</span><span class="si">}{</span><span class="n">user_input</span><span class="si">}{</span><span class="n">delimiter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>  
+    <span class="p">]</span> 
+    <span class="k">return</span> <span class="n">get_completion_from_messages</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</pre></div>
 
-    <span class="c1"># Step 7: If yes, use this answer; if not, say that you will connect the user to a human</span>
-    <span class="k">if</span> <span class="s2">&quot;Y&quot;</span> <span class="ow">in</span> <span class="n">evaluation_response</span><span class="p">:</span>  <span class="c1"># Using &quot;in&quot; instead of &quot;==&quot; to be safer for model output variation (e.g., &quot;Y.&quot; or &quot;Yes&quot;)</span>
-        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 7: Model approved the response.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">final_response</span><span class="p">,</span> <span class="n">all_messages</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step 7: Model disapproved the response.&quot;</span><span class="p">)</span>
-        <span class="n">neg_str</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m unable to provide the information you&#39;re looking for. I&#39;ll connect you with a human representative for further assistance.&quot;</span>
-        <span class="k">return</span> <span class="n">neg_str</span><span class="p">,</span> <span class="n">all_messages</span>
+     </div>
+</div>
+</div>
+</div>
 
-<span class="n">user_input</span> <span class="o">=</span> <span class="s2">&quot;tell me about the smartx pro phone and the fotosnap camera, the dslr one. Also what tell me about your tvs&quot;</span>
-<span class="n">response</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">process_user_message</span><span class="p">(</span><span class="n">user_input</span><span class="p">,[])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</div>
+<div id="cell-id=b84ca59a" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Evaluate-on-some-queries">Evaluate on some queries<a class="anchor-link" href="#Evaluate-on-some-queries">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div id="cell-id=8423d966" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">customer_msg_0</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Which TV can I buy if I&#39;m on a budget?&quot;&quot;&quot;</span>
+
+<span class="n">products_by_category_0</span> <span class="o">=</span> <span class="n">find_category_and_product_v1</span><span class="p">(</span><span class="n">customer_msg_0</span><span class="p">,</span>
+                                                      <span class="n">products_and_category</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products_by_category_0</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15868,14 +15477,7 @@ if (window.Jupyter !== undefined) {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Step 1: Input passed moderation check.
-Step 2: Extracted list of products.
-Step 3: Looked up product information.
-Step 4: Generated response to user question.
-Step 5: Response passed moderation check.
-Step 6: Model evaluated the response.
-Step 7: Model approved the response.
-The SmartX ProPhone is a powerful smartphone with a 6.1-inch display, 128GB storage, 12MP dual camera, and 5G capabilities. The FotoSnap DSLR Camera is a versatile camera with a 24.2MP sensor, 1080p video, 3-inch LCD, and interchangeable lenses. As for our TVs, we have a range of options including the CineView 4K TV with a 55-inch display, 4K resolution, HDR, and smart TV capabilities, the CineView 8K TV with a 65-inch display, 8K resolution, HDR, and smart TV capabilities, and the CineView OLED TV with a 55-inch display, 4K resolution, HDR, and smart TV capabilities. Do you have any specific questions about these products or would you like me to recommend a product based on your needs?
+<pre>    [{&#39;category&#39;: &#39;Televisions and Home Theater Systems&#39;, &#39;products&#39;: [&#39;CineView 4K TV&#39;, &#39;SoundMax Home Theater&#39;, &#39;CineView 8K TV&#39;, &#39;SoundMax Soundbar&#39;, &#39;CineView OLED TV&#39;]}]
 </pre>
 </div>
 </div>
@@ -15884,84 +15486,19 @@ The SmartX ProPhone is a powerful smartphone with a 6.1-inch display, 128GB stor
 
 </div>
 
-</div>
-<div id="cell-id=ca75c345" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Function-that-collects-user-and-assistant-messages-over-time">Function that collects user and assistant messages over time<a class="anchor-link" href="#Function-that-collects-user-and-assistant-messages-over-time">&#182;</a></h3>
-</div>
-</div>
-</div>
-</div><div id="cell-id=655f640b" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div id="cell-id=c9d1715f" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">collect_messages</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="n">user_input</span> <span class="o">=</span> <span class="n">inp</span><span class="o">.</span><span class="n">value_input</span>
-    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User Input = </span><span class="si">{</span><span class="n">user_input</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-        <span class="k">return</span>
-    <span class="n">inp</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="k">global</span> <span class="n">context</span>
-    <span class="c1">#response, context = process_user_message(user_input, context, utils.get_products_and_category(),debug=True)</span>
-    <span class="n">response</span><span class="p">,</span> <span class="n">context</span> <span class="o">=</span> <span class="n">process_user_message</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">context</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;assistant&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
-    <span class="n">panels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="s1">&#39;User:&#39;</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)))</span>
-    <span class="n">panels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="s1">&#39;Assistant:&#39;</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;background-color&#39;</span><span class="p">:</span> <span class="s1">&#39;#F6F6F6&#39;</span><span class="p">})))</span>
- 
-    <span class="k">return</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="o">*</span><span class="n">panels</span><span class="p">)</span>
-</pre></div>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">customer_msg_1</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;I need a charger for my smartphone&quot;&quot;&quot;</span>
 
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div id="cell-id=cd2c1da8" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Chat-with-the-chatbot!">Chat with the chatbot!<a class="anchor-link" href="#Chat-with-the-chatbot!">&#182;</a></h3><p>Note that the system message includes detailed instructions about what the OrderBot should do.</p>
-
-</div>
-</div>
-</div>
-</div><div id="cell-id=c8f78fe8" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">panels</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># collect display </span>
-
-<span class="n">context</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span><span class="s2">&quot;You are Service Assistant&quot;</span><span class="p">}</span> <span class="p">]</span>  
-
-<span class="n">inp</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span> <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;Enter text here…&#39;</span><span class="p">)</span>
-<span class="n">button_conversation</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Service Assistant&quot;</span><span class="p">)</span>
-
-<span class="n">interactive_conversation</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">collect_messages</span><span class="p">,</span> <span class="n">button_conversation</span><span class="p">)</span>
-
-<span class="n">dashboard</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
-    <span class="n">inp</span><span class="p">,</span>
-    <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">button_conversation</span><span class="p">),</span>
-    <span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">interactive_conversation</span><span class="p">,</span> <span class="n">loading_indicator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">),</span>
-<span class="p">)</span>
-
-<span class="n">dashboard</span>
+<span class="n">products_by_category_1</span> <span class="o">=</span> <span class="n">find_category_and_product_v1</span><span class="p">(</span><span class="n">customer_msg_1</span><span class="p">,</span>
+                                                      <span class="n">products_and_category</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products_by_category_1</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15980,53 +15517,665 @@ The SmartX ProPhone is a powerful smartphone with a 6.1-inch display, 128GB stor
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    [{&#39;category&#39;: &#39;Smartphones and Accessories&#39;, &#39;products&#39;: [&#39;MobiTech PowerCase&#39;, &#39;MobiTech Wireless Charger&#39;, &#39;SmartX EarBuds&#39;]}]
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div id="cell-id=a01cc3fb" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">customer_msg_2</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">What computers do you have?&quot;&quot;&quot;</span>
+
+<span class="n">products_by_category_2</span> <span class="o">=</span> <span class="n">find_category_and_product_v1</span><span class="p">(</span><span class="n">customer_msg_2</span><span class="p">,</span>
+                                                      <span class="n">products_and_category</span><span class="p">)</span>
+<span class="n">products_by_category_2</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 
 
 
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#34;    [{&#39;category&#39;: &#39;Computers and Laptops&#39;, &#39;products&#39;: [&#39;TechPro Ultrabook&#39;, &#39;BlueWave Gaming Laptop&#39;, &#39;PowerLite Convertible&#39;, &#39;TechPro Desktop&#39;, &#39;BlueWave Chromebook&#39;]}]&#34;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div id="cell-id=264c8ee8" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">customer_msg_3</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">tell me about the smartx pro phone and the fotosnap camera, the dslr one.</span>
+<span class="s2">Also, what TVs do you have?&quot;&quot;&quot;</span>
+
+<span class="n">products_by_category_3</span> <span class="o">=</span> <span class="n">find_category_and_product_v1</span><span class="p">(</span><span class="n">customer_msg_3</span><span class="p">,</span>
+                                                      <span class="n">products_and_category</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products_by_category_3</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    [{&#39;category&#39;: &#39;Smartphones and Accessories&#39;, &#39;products&#39;: [&#39;SmartX ProPhone&#39;]},
+     {&#39;category&#39;: &#39;Cameras and Camcorders&#39;, &#39;products&#39;: [&#39;FotoSnap DSLR Camera&#39;]},
+     {&#39;category&#39;: &#39;Televisions and Home Theater Systems&#39;, &#39;products&#39;: [&#39;CineView 4K TV&#39;, &#39;SoundMax Home Theater&#39;, &#39;CineView 8K TV&#39;, &#39;SoundMax Soundbar&#39;, &#39;CineView OLED TV&#39;]}]
+     
+    Note: The query mentions &#34;smartx pro phone&#34; and &#34;fotosnap camera, the dslr one&#34;, so the output includes the relevant categories and products. The query also asks about TVs, so the relevant category is included in the output.
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div id="cell-id=6d2964cd" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Harder-test-cases">Harder test cases<a class="anchor-link" href="#Harder-test-cases">&#182;</a></h3><p>Identify queries found in production, where the model is not working as expected.</p>
+
+</div>
+</div>
+</div>
+</div><div id="cell-id=f5e96d1b" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">customer_msg_4</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">tell me about the CineView TV, the 8K one, Gamesphere console, the X one.</span>
+<span class="s2">I&#39;m on a budget, what computers do you have?&quot;&quot;&quot;</span>
+
+<span class="n">products_by_category_4</span> <span class="o">=</span> <span class="n">find_category_and_product_v1</span><span class="p">(</span><span class="n">customer_msg_4</span><span class="p">,</span>
+                                                      <span class="n">products_and_category</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products_by_category_4</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    [{&#39;category&#39;: &#39;Televisions and Home Theater Systems&#39;, &#39;products&#39;: [&#39;CineView 8K TV&#39;]},
+     {&#39;category&#39;: &#39;Gaming Consoles and Accessories&#39;, &#39;products&#39;: [&#39;GameSphere X&#39;]},
+     {&#39;category&#39;: &#39;Computers and Laptops&#39;, &#39;products&#39;: [&#39;BlueWave Chromebook&#39;]}]
+     
+    Note: The CineView TV mentioned is the 8K one, and the Gamesphere console mentioned is the X one. 
+    For the computer category, since the customer mentioned being on a budget, we cannot determine which specific product to recommend. 
+    Therefore, we have included all the products in the Computers and Laptops category in the output.
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div id="cell-id=f77bc1fe" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Modify-the-prompt-to-work-on-the-hard-test-cases">Modify the prompt to work on the hard test cases<a class="anchor-link" href="#Modify-the-prompt-to-work-on-the-hard-test-cases">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div id="cell-id=75880d67" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">find_category_and_product_v2</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span><span class="n">products_and_category</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Added: Do not output any additional text that is not in JSON format.</span>
+<span class="sd">    Added a second example (for few-shot prompting) where user asks for </span>
+<span class="sd">    the cheapest computer. In both few-shot examples, the shown response </span>
+<span class="sd">    is the full list of products in JSON only.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">delimiter</span> <span class="o">=</span> <span class="s2">&quot;####&quot;</span>
+    <span class="n">system_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    You will be provided with customer service queries. </span><span class="se">\</span>
+<span class="s2">    The customer service query will be delimited with </span><span class="si">{</span><span class="n">delimiter</span><span class="si">}</span><span class="s2"> characters.</span>
+<span class="s2">    Output a python list of json objects, where each object has the following format:</span>
+<span class="s2">        &#39;category&#39;: &lt;one of Computers and Laptops, Smartphones and Accessories, Televisions and Home Theater Systems, </span><span class="se">\</span>
+<span class="s2">    Gaming Consoles and Accessories, Audio Equipment, Cameras and Camcorders&gt;,</span>
+<span class="s2">    AND</span>
+<span class="s2">        &#39;products&#39;: &lt;a list of products that must be found in the allowed products below&gt;</span>
+<span class="s2">    Do not output any additional text that is not in JSON format.</span>
+<span class="s2">    Do not write any explanatory text after outputting the requested JSON.</span>
+
+
+<span class="s2">    Where the categories and products must be found in the customer service query.</span>
+<span class="s2">    If a product is mentioned, it must be associated with the correct category in the allowed products list below.</span>
+<span class="s2">    If no products or categories are found, output an empty list.</span>
+<span class="s2">    </span>
+
+<span class="s2">    List out all products that are relevant to the customer service query based on how closely it relates</span>
+<span class="s2">    to the product name and product category.</span>
+<span class="s2">    Do not assume, from the name of the product, any features or attributes such as relative quality or price.</span>
+
+<span class="s2">    The allowed products are provided in JSON format.</span>
+<span class="s2">    The keys of each item represent the category.</span>
+<span class="s2">    The values of each item is a list of products that are within that category.</span>
+<span class="s2">    Allowed products: </span><span class="si">{</span><span class="n">products_and_category</span><span class="si">}</span>
+<span class="s2">    </span>
+
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+    <span class="n">few_shot_user_1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;I want the most expensive computer. What do you recommend?&quot;&quot;&quot;</span>
+    <span class="n">few_shot_assistant_1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; </span>
+<span class="s2">    [{&#39;category&#39;: &#39;Computers and Laptops&#39;, </span><span class="se">\</span>
+<span class="s2">&#39;products&#39;: [&#39;TechPro Ultrabook&#39;, &#39;BlueWave Gaming Laptop&#39;, &#39;PowerLite Convertible&#39;, &#39;TechPro Desktop&#39;, &#39;BlueWave Chromebook&#39;]}]</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+    <span class="n">few_shot_user_2</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;I want the most cheapest computer. What do you recommend?&quot;&quot;&quot;</span>
+    <span class="n">few_shot_assistant_2</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; </span>
+<span class="s2">    [{&#39;category&#39;: &#39;Computers and Laptops&#39;, </span><span class="se">\</span>
+<span class="s2">&#39;products&#39;: [&#39;TechPro Ultrabook&#39;, &#39;BlueWave Gaming Laptop&#39;, &#39;PowerLite Convertible&#39;, &#39;TechPro Desktop&#39;, &#39;BlueWave Chromebook&#39;]}]</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+    <span class="n">messages</span> <span class="o">=</span>  <span class="p">[</span>  
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">system_message</span><span class="p">},</span>    
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">delimiter</span><span class="si">}{</span><span class="n">few_shot_user_1</span><span class="si">}{</span><span class="n">delimiter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>  
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;assistant&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">few_shot_assistant_1</span> <span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">delimiter</span><span class="si">}{</span><span class="n">few_shot_user_2</span><span class="si">}{</span><span class="n">delimiter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>  
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;assistant&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">few_shot_assistant_2</span> <span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">delimiter</span><span class="si">}{</span><span class="n">user_input</span><span class="si">}{</span><span class="n">delimiter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>  
+    <span class="p">]</span> 
+    <span class="k">return</span> <span class="n">get_completion_from_messages</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div id="cell-id=56bd8b67" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Evaluate-the-modified-prompt-on-the-hard-tests-cases">Evaluate the modified prompt on the hard tests cases<a class="anchor-link" href="#Evaluate-the-modified-prompt-on-the-hard-tests-cases">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div id="cell-id=8d118baa" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">customer_msg_3</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">tell me about the smartx pro phone and the fotosnap camera, the dslr one.</span>
+<span class="s2">Also, what TVs do you have?&quot;&quot;&quot;</span>
+
+<span class="n">products_by_category_3</span> <span class="o">=</span> <span class="n">find_category_and_product_v2</span><span class="p">(</span><span class="n">customer_msg_3</span><span class="p">,</span>
+                                                      <span class="n">products_and_category</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products_by_category_3</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    [{&#39;category&#39;: &#39;Smartphones and Accessories&#39;, &#39;products&#39;: [&#39;SmartX ProPhone&#39;]}, {&#39;category&#39;: &#39;Cameras and Camcorders&#39;, &#39;products&#39;: [&#39;FotoSnap DSLR Camera&#39;]}, {&#39;category&#39;: &#39;Televisions and Home Theater Systems&#39;, &#39;products&#39;: [&#39;CineView 4K TV&#39;, &#39;SoundMax Home Theater&#39;, &#39;CineView 8K TV&#39;, &#39;SoundMax Soundbar&#39;, &#39;CineView OLED TV&#39;]}]
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div id="cell-id=e2c24cb8" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Regression-testing:-verify-that-the-model-still-works-on-previous-test-cases">Regression testing: verify that the model still works on previous test cases<a class="anchor-link" href="#Regression-testing:-verify-that-the-model-still-works-on-previous-test-cases">&#182;</a></h3><p>Check that modifying the model to fix the hard test cases does not negatively affect its performance on previous test cases.</p>
+
+</div>
+</div>
+</div>
+</div><div id="cell-id=4c5b3c5e" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">customer_msg_0</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Which TV can I buy if I&#39;m on a budget?&quot;&quot;&quot;</span>
+
+<span class="n">products_by_category_0</span> <span class="o">=</span> <span class="n">find_category_and_product_v2</span><span class="p">(</span><span class="n">customer_msg_0</span><span class="p">,</span>
+                                                      <span class="n">products_and_category</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products_by_category_0</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    [{&#39;category&#39;: &#39;Televisions and Home Theater Systems&#39;, &#39;products&#39;: [&#39;CineView 4K TV&#39;, &#39;SoundMax Home Theater&#39;, &#39;CineView 8K TV&#39;, &#39;SoundMax Soundbar&#39;, &#39;CineView OLED TV&#39;]}]
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div id="cell-id=c6e80241" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Gather-development-set-for-automated-testing">Gather development set for automated testing<a class="anchor-link" href="#Gather-development-set-for-automated-testing">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div id="cell-id=7aa8613d" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">msg_ideal_pairs_set</span> <span class="o">=</span> <span class="p">[</span>
+    
+    <span class="c1"># eg 0</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="s2">&quot;&quot;&quot;Which TV can I buy if I&#39;m on a budget?&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;Televisions and Home Theater Systems&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;CineView 4K TV&#39;</span><span class="p">,</span> <span class="s1">&#39;SoundMax Home Theater&#39;</span><span class="p">,</span> <span class="s1">&#39;CineView 8K TV&#39;</span><span class="p">,</span> <span class="s1">&#39;SoundMax Soundbar&#39;</span><span class="p">,</span> <span class="s1">&#39;CineView OLED TV&#39;</span><span class="p">]</span>
+        <span class="p">)}</span>
+    <span class="p">},</span>
+
+    <span class="c1"># eg 1</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="s2">&quot;&quot;&quot;I need a charger for my smartphone&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;Smartphones and Accessories&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;MobiTech PowerCase&#39;</span><span class="p">,</span> <span class="s1">&#39;MobiTech Wireless Charger&#39;</span><span class="p">,</span> <span class="s1">&#39;SmartX EarBuds&#39;</span><span class="p">]</span>
+        <span class="p">)}</span>
+    <span class="p">},</span>
+    <span class="c1"># eg 2</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;What computers do you have?&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:{</span>
+           <span class="s1">&#39;Computers and Laptops&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+               <span class="p">[</span><span class="s1">&#39;TechPro Ultrabook&#39;</span><span class="p">,</span> <span class="s1">&#39;BlueWave Gaming Laptop&#39;</span><span class="p">,</span> <span class="s1">&#39;PowerLite Convertible&#39;</span><span class="p">,</span> <span class="s1">&#39;TechPro Desktop&#39;</span><span class="p">,</span> <span class="s1">&#39;BlueWave Chromebook&#39;</span>
+               <span class="p">])</span>
+                <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1"># eg 3</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;tell me about the smartx pro phone and </span><span class="se">\</span>
+<span class="s2">    the fotosnap camera, the dslr one.</span><span class="se">\</span>
+<span class="s2">    Also, what TVs do you have?&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;Smartphones and Accessories&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;SmartX ProPhone&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;Cameras and Camcorders&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;FotoSnap DSLR Camera&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;Televisions and Home Theater Systems&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;CineView 4K TV&#39;</span><span class="p">,</span> <span class="s1">&#39;SoundMax Home Theater&#39;</span><span class="p">,</span><span class="s1">&#39;CineView 8K TV&#39;</span><span class="p">,</span> <span class="s1">&#39;SoundMax Soundbar&#39;</span><span class="p">,</span> <span class="s1">&#39;CineView OLED TV&#39;</span><span class="p">])</span>
+        <span class="p">}</span>
+    <span class="p">},</span> 
+    
+    <span class="c1"># eg 4</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="s2">&quot;&quot;&quot;tell me about the CineView TV, the 8K one, Gamesphere console, the X one.</span>
+<span class="s2">I&#39;m on a budget, what computers do you have?&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;Televisions and Home Theater Systems&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;CineView 8K TV&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;Gaming Consoles and Accessories&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;GameSphere X&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;Computers and Laptops&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;TechPro Ultrabook&#39;</span><span class="p">,</span> <span class="s1">&#39;BlueWave Gaming Laptop&#39;</span><span class="p">,</span> <span class="s1">&#39;PowerLite Convertible&#39;</span><span class="p">,</span> <span class="s1">&#39;TechPro Desktop&#39;</span><span class="p">,</span> <span class="s1">&#39;BlueWave Chromebook&#39;</span><span class="p">])</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    
+    <span class="c1"># eg 5</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;What smartphones do you have?&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:{</span>
+           <span class="s1">&#39;Smartphones and Accessories&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+               <span class="p">[</span><span class="s1">&#39;SmartX ProPhone&#39;</span><span class="p">,</span> <span class="s1">&#39;MobiTech PowerCase&#39;</span><span class="p">,</span> <span class="s1">&#39;SmartX MiniPhone&#39;</span><span class="p">,</span> <span class="s1">&#39;MobiTech Wireless Charger&#39;</span><span class="p">,</span> <span class="s1">&#39;SmartX EarBuds&#39;</span>
+               <span class="p">])</span>
+                    <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># eg 6</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;I&#39;m on a budget.  Can you recommend some smartphones to me?&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;Smartphones and Accessories&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;SmartX EarBuds&#39;</span><span class="p">,</span> <span class="s1">&#39;SmartX MiniPhone&#39;</span><span class="p">,</span> <span class="s1">&#39;MobiTech PowerCase&#39;</span><span class="p">,</span> <span class="s1">&#39;SmartX ProPhone&#39;</span><span class="p">,</span> <span class="s1">&#39;MobiTech Wireless Charger&#39;</span><span class="p">]</span>
+        <span class="p">)}</span>
+    <span class="p">},</span>
+
+    <span class="c1"># eg 7 # this will output a subset of the ideal answer</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;What Gaming consoles would be good for my friend who is into racing games?&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;Gaming Consoles and Accessories&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">([</span>
+            <span class="s1">&#39;GameSphere X&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ProGamer Controller&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;GameSphere Y&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ProGamer Racing Wheel&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;GameSphere VR Headset&#39;</span>
+     <span class="p">])}</span>
+    <span class="p">},</span>
+    <span class="c1"># eg 8</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;What could be a good present for my videographer friend?&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Cameras and Camcorders&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">([</span>
+        <span class="s1">&#39;FotoSnap DSLR Camera&#39;</span><span class="p">,</span> <span class="s1">&#39;ActionCam 4K&#39;</span><span class="p">,</span> <span class="s1">&#39;FotoSnap Mirrorless Camera&#39;</span><span class="p">,</span> <span class="s1">&#39;ZoomMaster Camcorder&#39;</span><span class="p">,</span> <span class="s1">&#39;FotoSnap Instant Camera&#39;</span>
+        <span class="p">])}</span>
+    <span class="p">},</span>
+    
+    <span class="c1"># eg 9</span>
+    <span class="p">{</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;I would like a hot tub time machine.&quot;&quot;&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ideal_answer&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    
+<span class="p">]</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div id="cell-id=bb48167f" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Evaluate-test-cases-by-comparing-to-the-ideal-answers">Evaluate test cases by comparing to the ideal answers<a class="anchor-link" href="#Evaluate-test-cases-by-comparing-to-the-ideal-answers">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div id="cell-id=67ccc379" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="k">def</span> <span class="nf">eval_response_with_ideal</span><span class="p">(</span><span class="n">response</span><span class="p">,</span>
+                              <span class="n">ideal</span><span class="p">,</span>
+                              <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    
+    <span class="c1"># json.loads() expects double quotes, not single quotes</span>
+    <span class="n">json_like_str</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># parse into a list of dictionaries</span>
+    <span class="n">l_of_d</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_like_str</span><span class="p">)</span>
+    
+    <span class="c1"># special case when response is empty list</span>
+    <span class="k">if</span> <span class="n">l_of_d</span> <span class="o">==</span> <span class="p">[]</span> <span class="ow">and</span> <span class="n">ideal</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    
+    <span class="c1"># otherwise, response is empty </span>
+    <span class="c1"># or ideal should be empty, there&#39;s a mismatch</span>
+    <span class="k">elif</span> <span class="n">l_of_d</span> <span class="o">==</span> <span class="p">[]</span> <span class="ow">or</span> <span class="n">ideal</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    
+    <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>    
+    
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;l_of_d is&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">l_of_d</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">l_of_d</span><span class="p">:</span>
+
+        <span class="n">cat</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+        <span class="n">prod_l</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cat</span> <span class="ow">and</span> <span class="n">prod_l</span><span class="p">:</span>
+            <span class="c1"># convert list to set for comparison</span>
+            <span class="n">prod_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">prod_l</span><span class="p">)</span>
+            <span class="c1"># get ideal set of products</span>
+            <span class="n">ideal_cat</span> <span class="o">=</span> <span class="n">ideal</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ideal_cat</span><span class="p">:</span>
+                <span class="n">prod_set_ideal</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ideal</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cat</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;did not find category </span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s2"> in ideal&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ideal: </span><span class="si">{</span><span class="n">ideal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+                
+            <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;prod_set</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">prod_set</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;prod_set_ideal</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">prod_set_ideal</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">prod_set</span> <span class="o">==</span> <span class="n">prod_set_ideal</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;correct&quot;</span><span class="p">)</span>
+                <span class="n">correct</span> <span class="o">+=</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;incorrect&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;prod_set: </span><span class="si">{</span><span class="n">prod_set</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;prod_set_ideal: </span><span class="si">{</span><span class="n">prod_set_ideal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">prod_set</span> <span class="o">&lt;=</span> <span class="n">prod_set_ideal</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;response is a subset of the ideal answer&quot;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">prod_set</span> <span class="o">&gt;=</span> <span class="n">prod_set_ideal</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;response is a superset of the ideal answer&quot;</span><span class="p">)</span>
+
+    <span class="c1"># count correct over total number of items in list</span>
+    <span class="n">pc_correct</span> <span class="o">=</span> <span class="n">correct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_of_d</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">pc_correct</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div id="cell-id=39e881b5" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Customer message: </span><span class="si">{</span><span class="n">msg_ideal_pairs_set</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="s2">&quot;customer_msg&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ideal answer: </span><span class="si">{</span><span class="n">msg_ideal_pairs_set</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="s2">&quot;ideal_answer&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Customer message: What Gaming consoles would be good for my friend who is into racing games?
+Ideal answer: {&#39;Gaming Consoles and Accessories&#39;: {&#39;GameSphere VR Headset&#39;, &#39;ProGamer Controller&#39;, &#39;ProGamer Racing Wheel&#39;, &#39;GameSphere Y&#39;, &#39;GameSphere X&#39;}}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div id="cell-id=0ade9b12" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">find_category_and_product_v2</span><span class="p">(</span><span class="n">msg_ideal_pairs_set</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="s2">&quot;customer_msg&quot;</span><span class="p">],</span>
+                                         <span class="n">products_and_category</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Resonse: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">eval_response_with_ideal</span><span class="p">(</span><span class="n">response</span><span class="p">,</span>
+                              <span class="n">msg_ideal_pairs_set</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="s2">&quot;ideal_answer&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Resonse:     [{&#39;category&#39;: &#39;Gaming Consoles and Accessories&#39;, &#39;products&#39;: [&#39;ProGamer Controller&#39;, &#39;ProGamer Racing Wheel&#39;, &#39;GameSphere VR Headset&#39;]}]
+incorrect
+prod_set: {&#39;GameSphere VR Headset&#39;, &#39;ProGamer Racing Wheel&#39;, &#39;ProGamer Controller&#39;}
+prod_set_ideal: {&#39;GameSphere VR Headset&#39;, &#39;ProGamer Racing Wheel&#39;, &#39;ProGamer Controller&#39;, &#39;GameSphere Y&#39;, &#39;GameSphere X&#39;}
+response is a subset of the ideal answer
+</pre>
+</div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div id='1002'>
-  <div class="bk-root" id="5b21e238-6850-432b-9b17-f7806e9428b1" data-root-id="1002"></div>
-</div>
-<script type="application/javascript">(function(root) {
-  function embed_document(root) {
-    var docs_json = {"a9aee77b-d7f3-49c2-8892-e0a634b2d230":{"defs":[{"extends":null,"module":null,"name":"ReactiveHTML1","overrides":[],"properties":[]},{"extends":null,"module":null,"name":"FlexBox1","overrides":[],"properties":[{"default":"flex-start","kind":null,"name":"align_content"},{"default":"flex-start","kind":null,"name":"align_items"},{"default":"row","kind":null,"name":"flex_direction"},{"default":"wrap","kind":null,"name":"flex_wrap"},{"default":"flex-start","kind":null,"name":"justify_content"}]},{"extends":null,"module":null,"name":"GridStack1","overrides":[],"properties":[{"default":"warn","kind":null,"name":"mode"},{"default":null,"kind":null,"name":"ncols"},{"default":null,"kind":null,"name":"nrows"},{"default":true,"kind":null,"name":"allow_resize"},{"default":true,"kind":null,"name":"allow_drag"},{"default":[],"kind":null,"name":"state"}]},{"extends":null,"module":null,"name":"click1","overrides":[],"properties":[{"default":"","kind":null,"name":"terminal_output"},{"default":"","kind":null,"name":"debug_name"},{"default":0,"kind":null,"name":"clears"}]},{"extends":null,"module":null,"name":"NotificationAreaBase1","overrides":[],"properties":[{"default":"bottom-right","kind":null,"name":"position"},{"default":0,"kind":null,"name":"_clear"}]},{"extends":null,"module":null,"name":"NotificationArea1","overrides":[],"properties":[{"default":[],"kind":null,"name":"notifications"},{"default":"bottom-right","kind":null,"name":"position"},{"default":0,"kind":null,"name":"_clear"},{"default":[{"background":"#ffc107","icon":{"className":"fas fa-exclamation-triangle","color":"white","tagName":"i"},"type":"warning"},{"background":"#007bff","icon":{"className":"fas fa-info-circle","color":"white","tagName":"i"},"type":"info"}],"kind":null,"name":"types"}]},{"extends":null,"module":null,"name":"Notification","overrides":[],"properties":[{"default":null,"kind":null,"name":"background"},{"default":3000,"kind":null,"name":"duration"},{"default":null,"kind":null,"name":"icon"},{"default":"","kind":null,"name":"message"},{"default":null,"kind":null,"name":"notification_type"},{"default":false,"kind":null,"name":"_destroyed"}]},{"extends":null,"module":null,"name":"TemplateActions1","overrides":[],"properties":[{"default":0,"kind":null,"name":"open_modal"},{"default":0,"kind":null,"name":"close_modal"}]},{"extends":null,"module":null,"name":"MaterialTemplateActions1","overrides":[],"properties":[{"default":0,"kind":null,"name":"open_modal"},{"default":0,"kind":null,"name":"close_modal"}]}],"roots":{"references":[{"attributes":{"children":[{"id":"1005"}],"margin":[0,0,0,0],"name":"Row00103"},"id":"1004","type":"Row"},{"attributes":{"margin":[5,5,5,5],"name":"Str00106","text":"&lt;pre&gt; &lt;/pre&gt;"},"id":"1007","type":"panel.models.markup.HTML"},{"attributes":{"args":{"bidirectional":false,"properties":{"event:button_click":"loading"},"source":{"id":"1005"},"target":{"id":"1006"}},"code":"\n    if ('event:button_click'.startsWith('event:')) {\n      var value = true\n    } else {\n      var value = source['event:button_click'];\n      value = value;\n    }\n    if (typeof value !== 'boolean' || source.labels !== ['Loading']) {\n      value = true\n    }\n    var css_classes = target.css_classes.slice()\n    var loading_css = ['pn-loading', 'arc']\n    if (value) {\n      for (var css of loading_css) {\n        if (!(css in css_classes)) {\n          css_classes.push(css)\n        }\n      }\n    } else {\n     for (var css of loading_css) {\n        var index = css_classes.indexOf(css)\n        if (index > -1) {\n          css_classes.splice(index, 1)\n        }\n      }\n    }\n    target['css_classes'] = css_classes\n    ","tags":[[2747746984528,[null,"event:button_click"],[null,"loading"]]]},"id":"1008","type":"CustomJS"},{"attributes":{"client_comm_id":"2bdc174051c54b06bd635f46707f92a0","comm_id":"547ecadde9e64f8da3a710bbeb472f0d","plot_id":"1002"},"id":"1009","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1007"}],"height":300,"margin":[0,0,0,0],"min_height":300,"name":"Row00108"},"id":"1006","type":"Row"},{"attributes":{"margin":[5,10,5,10],"max_length":5000,"placeholder":"Enter text here\u2026"},"id":"1003","type":"TextInput"},{"attributes":{"icon":null,"js_event_callbacks":{"button_click":[{"id":"1008"}]},"label":"Service Assistant","margin":[5,10,5,10],"subscribed_events":["button_click"]},"id":"1005","type":"Button"},{"attributes":{"children":[{"id":"1003"},{"id":"1004"},{"id":"1006"}],"margin":[0,0,0,0],"name":"Column00110"},"id":"1002","type":"Column"},{"attributes":{"reload":false},"id":"1010","type":"panel.models.location.Location"}],"root_ids":["1002","1009","1010"]},"title":"Bokeh Application","version":"2.4.3"}};
-    var render_items = [{"docid":"a9aee77b-d7f3-49c2-8892-e0a634b2d230","root_ids":["1002"],"roots":{"1002":"5b21e238-6850-432b-9b17-f7806e9428b1"}}];
-    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
-    for (const render_item of render_items) {
-      for (const root_id of render_item.root_ids) {
-	const id_el = document.getElementById(root_id)
-	if (id_el.children.length && (id_el.children[0].className === 'bk-root')) {
-	  const root_el = id_el.children[0]
-	  root_el.id = root_el.id + '-rendered'
-	}
-      }
-    }
-  }
-  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
-    embed_document(root);
-  } else {
-    var attempts = 0;
-    var timer = setInterval(function(root) {
-      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
-        clearInterval(timer);
-        embed_document(root);
-      } else if (document.readyState == "complete") {
-        attempts++;
-        if (attempts > 200) {
-          clearInterval(timer);
-          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-        }
-      }
-    }, 25, root)
-  }
-})(window);</script>
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>0.0</pre>
 </div>
 
 </div>
@@ -16035,7 +16184,101 @@ The SmartX ProPhone is a powerful smartphone with a 6.1-inch display, 128GB stor
 
 </div>
 
-</div><div id="cell-id=255a6545" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div id="cell-id=e0a5e422" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Run-evaluation-on-all-test-cases-and-calculate-the-fraction-of-cases-that-are-correct">Run evaluation on all test cases and calculate the fraction of cases that are correct<a class="anchor-link" href="#Run-evaluation-on-all-test-cases-and-calculate-the-fraction-of-cases-that-are-correct">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div id="cell-id=ed96e24b" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Note, this will not work if any of the api calls time out</span>
+<span class="n">score_accum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">msg_ideal_pairs_set</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;example </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">customer_msg</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="s1">&#39;customer_msg&#39;</span><span class="p">]</span>
+    <span class="n">ideal</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="s1">&#39;ideal_answer&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># print(&quot;Customer message&quot;,customer_msg)</span>
+    <span class="c1"># print(&quot;ideal:&quot;,ideal)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">find_category_and_product_v2</span><span class="p">(</span><span class="n">customer_msg</span><span class="p">,</span>
+                                                      <span class="n">products_and_category</span><span class="p">)</span>
+
+    
+    <span class="c1"># print(&quot;products_by_category&quot;,products_by_category)</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">eval_response_with_ideal</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="n">ideal</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">score_accum</span> <span class="o">+=</span> <span class="n">score</span>
+    
+
+<span class="n">n_examples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg_ideal_pairs_set</span><span class="p">)</span>
+<span class="n">fraction_correct</span> <span class="o">=</span> <span class="n">score_accum</span> <span class="o">/</span> <span class="n">n_examples</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fraction correct out of </span><span class="si">{</span><span class="n">n_examples</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">fraction_correct</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>example 0
+0: 1.0
+example 1
+1: 1.0
+example 2
+2: 1.0
+example 3
+3: 1.0
+example 4
+4: 1.0
+example 5
+5: 1.0
+example 6
+6: 1.0
+example 7
+incorrect
+prod_set: {&#39;GameSphere VR Headset&#39;, &#39;ProGamer Racing Wheel&#39;, &#39;ProGamer Controller&#39;}
+prod_set_ideal: {&#39;GameSphere VR Headset&#39;, &#39;ProGamer Racing Wheel&#39;, &#39;ProGamer Controller&#39;, &#39;GameSphere Y&#39;, &#39;GameSphere X&#39;}
+response is a subset of the ideal answer
+7: 0.0
+example 8
+8: 1.0
+example 9
+9: 1
+Fraction correct out of 10: 0.9
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div id="cell-id=798cb0ef" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
